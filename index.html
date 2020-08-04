@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- CDN Vie.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Todo List</title>
+  </head>
+  <body>
+      <div class="container">
+          <div id="app">
+              <div class="form-group">
+                  <h1>Todo List</h1>
+                  <input type="text" name="todo" id="todo" class="form-control" placeholder="To Do..." v-model="todo" @keyup.enter="addTodo">
+                   <!-- v-model : untuk two-way data binding dgn property todo -->
+                   <!-- @keyup.enter: menangani event ketika tombol enter ditekan
+                        yaitu memanggil method add Todo
+                        method ini akan menyimpan isian user (disimpan sementara di dalam todo) ke dalam array todos -->
+
+                  <button class="btn btn-primary" @click="addTodo()" style="margin-top: 8px"> Add </button>
+                  <!-- @click : memanggil method addTodo ketika tombol ditekan -->
+              </div>
+
+              <table class="table" v-if="todos.length > 0">
+                  <thead>
+                      <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Todo</th>
+                          <th scope="col">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody v-for="(todo, index) in todos" :key="index">
+                      <td scope="row">{{index+1}}</td>
+                      <td>{{todo}}</td>
+                      <td>
+                          <button class="btn btn-danger" @click="deleteTodo(index)">
+                              Delete
+                          </button>
+                      </td>
+                    </tbody>
+              </table>
+              <!-- todos:array yg menyimpan semua isian user -->
+              <!-- todo:variabel yg menyimpan sementara item di dalam todos selama looping
+                  (tidak ada kaitan dengan property data di app.js) -->
+              <h3 v-else>Empty</h3>
+          </div>
+      </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- script untuk meng-include file app.js -->
+    <script src="app.js"></script>
+  </body>
+</html>
